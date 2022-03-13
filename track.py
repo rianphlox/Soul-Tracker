@@ -70,7 +70,6 @@ tds = trs[0].find_elements(By.TAG_NAME, 'td')
 # print(len(tds), 'were found')
 a = tds[len(tds) - 1].find_element(By.TAG_NAME, 'a')
 a.click()
-driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.ESCAPE)
 try:
     modal = driver.find_element(By.CLASS_NAME, 'modal')
     try:
@@ -81,8 +80,9 @@ try:
             try:
                 modal_body = modal_content.find_element(By.CLASS_NAME, 'modal-body')
                 try:
-                    rows = modal_body.find_elements(By.XPATH, )
+                    rows = modal_body.find_elements(By.TAG_NAME, "div")
                     print(len(rows), 'rows were found')
+                    # print(rows[0])
                     # print(rows[0].text)
                 except:
                     print('No such element as row')
