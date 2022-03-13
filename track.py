@@ -12,6 +12,8 @@ from selenium.common.exceptions import *
 from random import choice, sample
 from config import *
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 def handleReload(): 
     pg.click(753, 600)
