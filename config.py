@@ -6,8 +6,9 @@ t_url = 'https://christembassysoultracker.org/track'
 
 account = 'uyimwen49@gmail.com'
 
+t_email = 'adegoke@gmail.com'
 password = 'amazing'
-cell_name = ['Flourish Cell']
+cell_name = ['Flourish Cell', 'Photizo', 'TrailBlazers']
 
 
 

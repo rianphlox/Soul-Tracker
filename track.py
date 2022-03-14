@@ -70,27 +70,58 @@ tds = trs[0].find_elements(By.TAG_NAME, 'td')
 # print(len(tds), 'were found')
 a = tds[len(tds) - 1].find_element(By.TAG_NAME, 'a')
 a.click()
+
+modal = driver.find_element(By.CLASS_NAME, 'modal')
+modal_dialog = modal.find_element(By.CLASS_NAME, 'modal-dialog')
+modal_content = modal_dialog.find_element(By.CLASS_NAME ,'modal-content')
+print('modal-content was found')
+modal_body = modal_content.find_element(By.CLASS_NAME, 'modal-body')
+rows = driver.execute_script("return document.querySelectorAll('#ModalUpdate > div > div > div > div')")
+# print(len(rows), 'rows were found')
+col_md = rows[2].find_element(By.CLASS_NAME , 'col-md-6')
+form_group = col_md.find_element(By.CLASS_NAME, 'form-group')
+email_input = form_group.find_element(By.TAG_NAME ,'input')
+email_input.clear()
+email_input.send_keys(t_email)
+print('Email input was found!\n\n\nFinally!!!\n')
 try:
-    modal = driver.find_element(By.CLASS_NAME, 'modal')
+    col_md_cell = rows[3].find_element(By.CLASS_NAME, 'col-md-6')
+    print('col_md_cell Was found!\n\n\n')
     try:
-        modal_dialog = modal.find_element(By.CLASS_NAME, 'modal-dialog')
+        form_group_cell = col_md_cell.find_element(By.CLASS_NAME, 'form-group')
+        print("Form Group was found\n\n")
         try:
-            modal_content = modal_dialog.find_element(By.CLASS_NAME ,'modal-content')
-            print('modal-content was found')
+            cell_input = form_group_cell.find_element(By.TAG_NAME, 'input')
+            print('cell input was found')
+            cell_input.clear()
+            cell_input.send_keys(choice(cell_name))
+            # rows[4].find_element(By.CLASS_NAME, 'col-md-6').find_element(By.CLASS_NAME, 'form-group').find_element(By.TAG_NAME, 'select')
             try:
-                modal_body = modal_content.find_element(By.CLASS_NAME, 'modal-body')
+                # both_selects = rows[4].find_element(By.CLASS_NAME, 'col-md-6').find_element(By.CLASS_NAME, 'form-group').find_element(By.TAG_NAME, 'select') 
+                # col_md_fs = rows[4].find_elements(By.CLASS_NAME, 'col-md-6')
+                Select(rows[4].find_element(By.CLASS_NAME, 'col-md-6').find_element(By.CLASS_NAME, 'form-group').find_element(By.TAG_NAME, 'select')).select_by_value('4')
+
+                print("found church service too")
+
                 try:
-                    rows = modal_body.find_elements(By.TAG_NAME, "div")
-                    print(len(rows), 'rows were found')
-                    # print(rows[0])
-                    # print(rows[0].text)
+                    col_md_fs = rows[4].find_elements(By.CLASS_NAME, 'col-md-6')
+                    Select(col_md_fs[1].find_element(By.CLASS_NAME, 'form-group').find_element(By.TAG_NAME, 'select')).select_by_value('7')
+                    print("Done: Found the Completed Foundation School Button\n\n")
+
+                    try:
+                        btns = rows[5].find_elements(By.TAG_NAME, 'button')
+                        btns[1].click()
+                    except NoSuchElementException as e:
+                        print(f"{e}\n\n\n")
                 except:
-                    print('No such element as row')
+                    print('Ain\'t seen anything bruh\n\n\n')
             except:
-                print('Modal Body not found')
-        except:
-            print("Modal Content not found")
-    except NoSuchElementException:
-        print("Modal Dialog not found")
-except NoSuchElementException:
-    print('No such element found')
+                print("Error\n\n")
+
+        except NoSuchElementException as e:
+            print(f"{e}\nCellinput wasn't found\n")
+    except NoSuchElementException as e:
+        print(e)
+
+except NoSuchElementException as e:
+    print(e)
