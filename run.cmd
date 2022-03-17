@@ -1,3 +1,3 @@
 @echo OFF
-FOR /L %%y IN (1, 100) DO track.py %%y
+FOR /L %%y IN (0, 99) DO track.py %%y
 PAUSE

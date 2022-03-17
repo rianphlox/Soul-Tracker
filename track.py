@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import sys
 import pyautogui as pg
 from time import sleep
 from selenium import webdriver
@@ -37,6 +38,7 @@ def track():
 
 options = Options()
 options.add_argument('--start-maximized')
+options.add_argument('disable-infobars')
 driver = webdriver.Chrome(options=options)
 
 driver.get(url)
@@ -66,7 +68,7 @@ tbody = driver.execute_script("return document.querySelector('tbody')")
 trs = tbody.find_elements(By.TAG_NAME, 'tr')
 # trs[0].find
 # print(len(trs), 'was found')
-tds = trs[0].find_elements(By.TAG_NAME, 'td')
+tds = trs[sys.argv[1]].find_elements(By.TAG_NAME, 'td')
 # print(len(tds), 'were found')
 a = tds[len(tds) - 1].find_element(By.TAG_NAME, 'a')
 a.click()
